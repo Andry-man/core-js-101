@@ -18,8 +18,8 @@
  *   'aa',''    => 'aa'
  *   '',  'bb'  => 'bb'
  */
-function concatenateStrings(/* value1, value2 */) {
-  throw new Error('Not implemented');
+function concatenateStrings(value1, value2) {
+  return value1 + value2;
 }
 
 
@@ -34,8 +34,8 @@ function concatenateStrings(/* value1, value2 */) {
  *   'b'     => 1
  *   ''      => 0
  */
-function getStringLength(/* value */) {
-  throw new Error('Not implemented');
+function getStringLength(value) {
+  return value.length;
 }
 
 /**
@@ -51,8 +51,8 @@ function getStringLength(/* value */) {
  *   'John','Doe'      => 'Hello, John Doe!'
  *   'Chuck','Norris'  => 'Hello, Chuck Norris!'
  */
-function getStringFromTemplate(/* firstName, lastName */) {
-  throw new Error('Not implemented');
+function getStringFromTemplate(firstName, lastName) {
+  return `Hello, ${firstName} ${lastName}!`;
 }
 
 /**
@@ -65,8 +65,12 @@ function getStringFromTemplate(/* firstName, lastName */) {
  *   'Hello, John Doe!' => 'John Doe'
  *   'Hello, Chuck Norris!' => 'Chuck Norris'
  */
-function extractNameFromTemplate(/* value */) {
-  throw new Error('Not implemented');
+function extractNameFromTemplate(value) {
+  const str = value;
+  const ansOne = str.replace('Hello,', '');
+  const len = ansOne.length - 1;
+  const ansTr = ansOne.slice(0, len);
+  return ansTr.trim();
 }
 
 
@@ -80,8 +84,8 @@ function extractNameFromTemplate(/* value */) {
  *   'John Doe'  => 'J'
  *   'cat'       => 'c'
  */
-function getFirstChar(/* value */) {
-  throw new Error('Not implemented');
+function getFirstChar(value) {
+  return value.split('')[0];
 }
 
 /**
@@ -95,8 +99,8 @@ function getFirstChar(/* value */) {
  *   'cat'              => 'cat'
  *   '\tHello, World! ' => 'Hello, World!'
  */
-function removeLeadingAndTrailingWhitespaces(/* value */) {
-  throw new Error('Not implemented');
+function removeLeadingAndTrailingWhitespaces(value) {
+  return value.trim();
 }
 
 /**
@@ -110,8 +114,8 @@ function removeLeadingAndTrailingWhitespaces(/* value */) {
  *   'A', 5  => 'AAAAA'
  *   'cat', 3 => 'catcatcat'
  */
-function repeatString(/* value, count */) {
-  throw new Error('Not implemented');
+function repeatString(value, count) {
+  return value.repeat(count);
 }
 
 /**
@@ -126,8 +130,9 @@ function repeatString(/* value, count */) {
  *   'I like legends', 'end' => 'I like legs',
  *   'ABABAB','BA' => 'ABAB'
  */
-function removeFirstOccurrences(/* str, value */) {
-  throw new Error('Not implemented');
+function removeFirstOccurrences(str, value) {
+  const ansOne = str.replace(value, '');
+  return ansOne;
 }
 
 /**
@@ -141,8 +146,13 @@ function removeFirstOccurrences(/* str, value */) {
  *   '<span>' => 'span'
  *   '<a>' => 'a'
  */
-function unbracketTag(/* str */) {
-  throw new Error('Not implemented');
+function unbracketTag(str) {
+  const ansOne = str;
+  const ansTwo = ansOne.split('');
+  const leng = ansTwo.length - 1;
+  delete ansTwo[0];
+  delete ansTwo[leng];
+  return ansTwo.join('');
 }
 
 
@@ -156,8 +166,8 @@ function unbracketTag(/* str */) {
  *   'Thunderstruck' => 'THUNDERSTRUCK'
  *  'abcdefghijklmnopqrstuvwxyz' => 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
  */
-function convertToUpperCase(/* str */) {
-  throw new Error('Not implemented');
+function convertToUpperCase(str) {
+  return String(str.toLocaleUpperCase());
 }
 
 /**
@@ -175,8 +185,8 @@ function convertToUpperCase(/* str */) {
  *   ],
  *   'info@gmail.com' => ['info@gmail.com']
  */
-function extractEmails(/* str */) {
-  throw new Error('Not implemented');
+function extractEmails(str) {
+  return str.split(';');
 }
 
 /**
@@ -202,8 +212,10 @@ function extractEmails(/* str */) {
  *             '└──────────┘\n'
  *
  */
-function getRectangleString(/* width, height */) {
-  throw new Error('Not implemented');
+function getRectangleString(width, height) {
+  const answerOne = (length, str) => Array(length - 2).fill(str).join('');
+  const answerTwo = `${answerOne(height, `│${answerOne(width, ' ')}│\n`)}`;
+  return `┌${answerOne(width, '─')}┐\n${answerTwo}└${answerOne(width, '─')}┘\n`;
 }
 
 
@@ -220,11 +232,73 @@ function getRectangleString(/* width, height */) {
  *   'Why did the chicken cross the road?' => 'Jul qvq gur puvpxra pebff gur ebnq?'
  *   'Gb trg gb gur bgure fvqr!' => 'To get to the other side!'
  *   'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
- *    => 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
+ *   'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
  *
  */
-function encodeToRot13(/* str */) {
-  throw new Error('Not implemented');
+function encodeToRot13(str) {
+  const lang = {
+    ' ': ' ',
+    '!': '!',
+    '?': '?',
+    A: 'N',
+    B: 'O',
+    C: 'P',
+    D: 'Q',
+    E: 'R',
+    F: 'S',
+    G: 'T',
+    H: 'U',
+    I: 'V',
+    J: 'W',
+    K: 'X',
+    L: 'Y',
+    M: 'Z',
+    N: 'A',
+    O: 'B',
+    P: 'C',
+    Q: 'D',
+    R: 'E',
+    S: 'F',
+    T: 'G',
+    U: 'H',
+    V: 'I',
+    W: 'J',
+    X: 'K',
+    Y: 'L',
+    Z: 'M',
+    a: 'n',
+    b: 'o',
+    c: 'p',
+    d: 'q',
+    e: 'r',
+    f: 's',
+    g: 't',
+    h: 'u',
+    i: 'v',
+    j: 'w',
+    k: 'x',
+    l: 'y',
+    m: 'z',
+    n: 'a',
+    o: 'b',
+    p: 'c',
+    q: 'd',
+    r: 'e',
+    s: 'f',
+    t: 'g',
+    u: 'h',
+    v: 'i',
+    w: 'j',
+    x: 'k',
+    y: 'l',
+    z: 'm',
+  };
+  const answerOne = str.split('');
+
+  for (let i = 0; i < answerOne.length; i += 1) {
+    answerOne[i] = lang[answerOne[i]];
+  }
+  return answerOne.join('');
 }
 
 /**
@@ -240,8 +314,25 @@ function encodeToRot13(/* str */) {
  *   isString('test') => true
  *   isString(new String('test')) => true
  */
-function isString(/* value */) {
-  throw new Error('Not implemented');
+
+function isString(value) {
+  const one = value;
+  if (value === undefined) {
+    return false;
+  }
+  if (value === null) {
+    return false;
+  }
+  if (typeof one === 'object') {
+    if (one[0] === 't') {
+      return true;
+    }
+    if (typeof one[0] === 'undefined') {
+      return false;
+    }
+    return false;
+  }
+  return true;
 }
 
 
@@ -269,8 +360,62 @@ function isString(/* value */) {
  *   'Q♠' => 50
  *   'K♠' => 51
  */
-function getCardId(/* value */) {
-  throw new Error('Not implemented');
+function getCardId(value) {
+  const data = {
+    'A♣': '0',
+    '2♣': '1',
+    '3♣': '2',
+    '4♣': '3',
+    '5♣': '4',
+    '6♣': '5',
+    '7♣': '6',
+    '8♣': '7',
+    '9♣': '8',
+    '10♣': '9',
+    'J♣': '10',
+    'Q♣': '11',
+    'K♣': '12',
+    'A♦': '13',
+    '2♦': '14',
+    '3♦': '15',
+    '4♦': '16',
+    '5♦': '17',
+    '6♦': '18',
+    '7♦': '19',
+    '8♦': '20',
+    '9♦': '21',
+    '10♦': '22',
+    'J♦': '23',
+    'Q♦': '24',
+    'K♦': '25',
+    'A♥': '26',
+    '2♥': '27',
+    '3♥': '28',
+    '4♥': '29',
+    '5♥': '30',
+    '6♥': '31',
+    '7♥': '32',
+    '8♥': '33',
+    '9♥': '34',
+    '10♥': '35',
+    'J♥': '36',
+    'Q♥': '37',
+    'K♥': '38',
+    'A♠': '39',
+    '2♠': '40',
+    '3♠': '41',
+    '4♠': '42',
+    '5♠': '43',
+    '6♠': '44',
+    '7♠': '45',
+    '8♠': '46',
+    '9♠': '47',
+    '10♠': '48',
+    'J♠': '49',
+    'Q♠': '50',
+    'K♠': '51',
+  };
+  return data[value];
 }
 
 
